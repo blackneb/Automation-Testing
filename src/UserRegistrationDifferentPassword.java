@@ -2,7 +2,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class UserRegistration {
+public class UserRegistrationDifferentPassword {
 
     public static void main(String[] args) {
 
@@ -22,13 +22,13 @@ public class UserRegistration {
         driver.findElement(By.id("LastName")).sendKeys("solomon");
         driver.findElement(By.id("Email")).sendKeys("antynjasfs@gmail.com");
         driver.findElement(By.id("Password")).sendKeys("123456");
-        driver.findElement(By.id("ConfirmPassword")).sendKeys("123456");
+        driver.findElement(By.id("ConfirmPassword")).sendKeys("1234");
 
         driver.findElement(By.id("register-button")).click();
 
-        String result = driver.findElement(By.className("validation-summary-errors")).getText();
+        String result = driver.findElement(By.className("field-validation-error")).getText();
 
-        if( result.equals("The specified email already exists") ) {
+        if( result.equals("The password and confirmation password do not match.") ) {
             System.out.println("Test Success");
         } else {
             System.out.println("Test Failed");
