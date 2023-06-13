@@ -2,7 +2,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class UserRegistration {
+public class LoginFive {
 
     public static void main(String[] args) {
 
@@ -10,25 +10,24 @@ public class UserRegistration {
 
         WebDriver driver= new ChromeDriver();
 
-        //Maximize window      
+        //Maximize window
         driver.manage().window().maximize();
 
-        //Launch the Site.      
-        driver.get("https://demowebshop.tricentis.com/register");
+        //Launch the Site.
+        driver.get("https://demowebshop.tricentis.com/login");
 
         //Enter values into form and submit
-        driver.findElement(By.id("gender-male")).click();
-        driver.findElement(By.id("FirstName")).sendKeys("anteneh");
-        driver.findElement(By.id("LastName")).sendKeys("solomon");
-        driver.findElement(By.id("Email")).sendKeys("antynjasfs@gmail.com");
-        driver.findElement(By.id("Password")).sendKeys("123456");
-        driver.findElement(By.id("ConfirmPassword")).sendKeys("123456");
+        driver.findElement(By.id("Email")).sendKeys("");
+        driver.findElement(By.id("Password")).sendKeys("");
+        driver.findElement(By.id("RememberMe")).click();
 
-        driver.findElement(By.id("register-button")).click();
+        driver.findElement(By.xpath("//input[@value='Log in']")).click();
 
         String result = driver.findElement(By.className("validation-summary-errors")).getText();
+        System.out.println(result);
 
-        if( result.equals("The specified email already exists") ) {
+        if( result.equals("Login was unsuccessful. Please correct the errors and try again.\n" +
+                "No customer account found") ) {
             System.out.println("Test Success");
         } else {
             System.out.println("Test Failed");
